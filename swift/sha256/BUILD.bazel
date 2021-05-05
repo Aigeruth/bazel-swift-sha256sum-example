@@ -1,0 +1,16 @@
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_binary",
+)
+
+swift_binary(
+    name = "sha256",
+    srcs = [
+        "sha256.swift",
+    ],
+    deps = select({
+        "//:macos_arm": ["@homebrew_arm64//:sha"],
+        "//:macos_intel": ["@homebrew_x86_64//:sha"],
+    }),
+    visibility = ["//visibility:public"],
+)

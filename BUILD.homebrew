@@ -1,0 +1,11 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "sha",
+    hdrs = ["opt/openssl@1.1/include/openssl/sha.h"],
+    includes = ["opt/openssl@1.1/include"],
+    srcs = ["opt/openssl@1.1/lib/libcrypto.a"],
+    tags = ["swift_module=Copenssl"],
+    linkstatic = True,
+    visibility = ["//visibility:public"],
+)
